@@ -4,7 +4,7 @@ import Time "mo:base/Time";
 import Int "mo:base/Int";
 import LLM "mo:llm";
 
-persistent actor PoetryBackend {
+actor PoetryBackend {
     
     stable var currentPoem : Text = "";
     stable var currentPoemTitle : Text = "";
