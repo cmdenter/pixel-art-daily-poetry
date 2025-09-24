@@ -19,20 +19,29 @@
   }
 }
 
-/* Notebook paper with lines */
-.notebook-paper {
+/* Computer screen with scan lines */
+.computer-screen {
+  background: linear-gradient(
+    to bottom,
+    #001100 0%,
+    #002200 50%,
+    #001100 100%
+  );
+  /* Scan line effect */
   background-image: 
-    /* Red margin line */
-    linear-gradient(to right, transparent 60px, #ff6b6b 60px, #ff6b6b 62px, transparent 62px),
-    /* Horizontal ruled lines */
     repeating-linear-gradient(
       transparent,
-      transparent 31px,
-      #c3d4e8 31px,
-      #c3d4e8 32px
+      transparent 15px,
+      rgba(0, 255, 0, 0.03) 15px,
+      rgba(0, 255, 0, 0.03) 16px
     );
-  background-size: 100% 32px;
-  line-height: 32px;
+  background-size: 100% 16px;
+  line-height: 16px;
+  border: 8px solid #333;
+  border-radius: 12px;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 255, 0, 0.1),
+    0 0 40px rgba(0, 0, 0, 0.8);
 }
 
 /* Pixel border effect */
@@ -83,22 +92,34 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Pixel text style */
-.handwritten {
+/* Computer screen text style */
+.screen-text {
   font-family: 'Press Start 2P', monospace;
-  line-height: 32px;
-  margin-left: 80px; /* Start after red margin line */
-  padding-right: 40px;
-  text-align: left;
-  color: #2c3e50;
-  font-size: 12px;
+  line-height: 16px;
+  color: #00ff00;
+  font-size: 10px;
+  text-shadow: 0 0 5px #00ff00;
+  padding: 0 20px;
 }
 
-/* Pixel title style */
-.handwritten-title {
+/* Computer screen title style */
+.screen-title {
   font-family: 'Press Start 2P', monospace;
-  line-height: 32px;
-  margin-left: 80px;
-  color: #2c3e50;
-  font-size: 14px;
+  line-height: 16px;
+  color: #00ff00;
+  font-size: 12px;
+  text-shadow: 0 0 8px #00ff00;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Screen date style */
+.screen-date {
+  font-family: 'Press Start 2P', monospace;
+  line-height: 16px;
+  color: #00aa00;
+  font-size: 8px;
+  text-shadow: 0 0 3px #00aa00;
+  text-align: center;
+  margin-bottom: 32px;
 }

@@ -36,76 +36,53 @@ const App = () => {
 
   const formatPoem = (poem) => {
     return poem.split('\n').map((line, index) => (
-      <div key={index} className="mb-2 leading-relaxed">
-        {line}
+      <div key={index} className="screen-text">
+        {line || ' '} {/* Empty lines show as space to maintain line height */}
       </div>
     ));
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8">
+    <div className="min-h-screen bg-black p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-4xl mb-4" style={{fontFamily: 'Press Start 2P, monospace'}}>
-            DAILY POETRY
+          <h1 className="text-2xl md:text-4xl mb-4 text-green-400" style={{fontFamily: 'Press Start 2P, monospace', textShadow: '0 0 10px #00ff00'}}>
+            DAILY POETRY TERMINAL
           </h1>
         </div>
 
-        {/* Notebook Container */}
+        {/* Computer Screen Container */}
         <div className="flex justify-center">
-          <div 
-            className="bg-white notebook-paper shadow-2xl relative"
-            style={{
-              width: '210mm',
-              height: '297mm',
-              maxWidth: '90vw',
-              maxHeight: '80vh',
-              aspectRatio: '210/297',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
-            }}
-          >
-            {/* Spiral binding holes */}
-            <div className="absolute left-6 top-0 bottom-0 flex flex-col justify-around py-4">
-              {[...Array(25)].map((_, i) => (
-                <div 
-                  key={i}
-                  className="w-3 h-3 rounded-full bg-gray-100 border border-gray-300"
-                />
-              ))}
+          <div className="computer-screen p-6 min-h-fit max-w-full">
+            {/* Screen Header */}
+            <div className="screen-title">
+              {currentTitle.toUpperCase() || 'LOADING...'}
+            </div>
+            
+            <div className="screen-date">
+              {new Date().toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              }).toUpperCase()}
             </div>
 
-            {/* Content Area */}
-            <div className="h-full flex flex-col pt-8">
-              {/* Title and Date Area */}
-              <div className="mb-8">
-                <h2 className="handwritten-title mb-2">
-                  {currentTitle.toUpperCase() || 'LOADING...'}
-                </h2>
-                <div className="handwritten text-xs text-gray-500 mb-6">
-                  {new Date().toLocaleDateString('en-US', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                  }).toUpperCase()}
-                </div>
-              </div>
+            {/* Poem Content - Dynamic sizing */}
+            <div className="flex flex-col items-start justify-start">
+              {formatPoem(currentPoem.toUpperCase() || 'LOADING POEM...')}
+            </div>
 
-              {/* Poem Content */}
-              <div className="flex-1 flex items-start justify-start pt-4">
-                <div className="handwritten">
-                  {formatPoem(currentPoem.toUpperCase() || 'LOADING POEM...')}
-                </div>
-              </div>
+            {/* Terminal cursor */}
+            <div className="screen-text mt-4">
+              <span className="animate-pulse">█</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Info */}
-        <div className="text-center mt-8 text-xs text-gray-500" style={{fontFamily: 'Press Start 2P, monospace'}}>
+        <div className="text-center mt-8 text-xs text-green-600" style={{fontFamily: 'Press Start 2P, monospace', textShadow: '0 0 5px #00aa00'}}>
           POWERED BY INTERNET COMPUTER AI
         </div>
       </div>
