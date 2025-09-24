@@ -1,0 +1,69 @@
+/* Pixel Art Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom pixel art styles */
+@layer base {
+  * {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Pixel paper texture */
+.pixel-paper {
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Pixel border effect */
+.pixel-border {
+  border-style: solid;
+  border-image: url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m0,0 L0,8 L8,8 L8,0 Z M8,8 L8,16 L16,16 L16,8 Z M16,16 L16,24 L24,24 L24,16 Z' fill='%23000'/%3e%3c/svg%3e") 8;
+}
+
+/* Typewriter effect */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: #000; }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #000;
+  white-space: nowrap;
+  animation: 
+    typewriter 3s steps(40, end),
+    blink 0.75s step-end infinite;
+}
+
+/* Pixel button styles */
+.pixel-button {
+  background: #f0f0f0;
+  border: 2px solid #000;
+  box-shadow: 
+    inset -2px -2px 0px 0px #a0a0a0,
+    inset 2px 2px 0px 0px #ffffff;
+  position: relative;
+}
+
+.pixel-button:hover {
+  background: #e0e0e0;
+}
+
+.pixel-button:active {
+  box-shadow: 
+    inset 2px 2px 0px 0px #a0a0a0,
+    inset -2px -2px 0px 0px #ffffff;
+}
