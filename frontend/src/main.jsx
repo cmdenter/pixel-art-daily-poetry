@@ -5,8 +5,8 @@ import '/index.css';
 
 const App = () => {
   const [currentPoem, setCurrentPoem] = useState('');
+  const [currentTitle, setCurrentTitle] = useState('');
   const [poemCount, setPoemCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [lastUpdate, setLastUpdate] = useState('');
 
   // Load today's poem on component mount
@@ -15,13 +15,13 @@ const App = () => {
   }, []);
 
   const loadTodaysPoem = async () => {
-    setIsLoading(true);
     try {
-      const poem = await backend.getCurrentPoem();
+      const poemData = await backend.getCurrentPoem();
       const count = await backend.getPoemCount();
       const updateDate = await backend.getLastUpdateDate();
       
-      setCurrentPoem(poem);
+      setCurrentPoem(poemData.poem);
+      setCurrentTitle(poemData.title);
       setPoemCount(count);
       
       // Convert nanoseconds to readable date
@@ -29,27 +29,8 @@ const App = () => {
       setLastUpdate(date.toLocaleDateString());
     } catch (e) {
       console.error('Error loading poem:', e);
-      setCurrentPoem('Unable to load today\'s poem. Please try again later.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const generateNewPoem = async () => {
-    setIsLoading(true);
-    try {
-      const newPoem = await backend.getDailyPoem();
-      const count = await backend.getPoemCount();
-      
-      setCurrentPoem(newPoem);
-      setPoemCount(count);
-      
-      const today = new Date();
-      setLastUpdate(today.toLocaleDateString());
-    } catch (e) {
-      console.error('Error generating poem:', e);
-    } finally {
-      setIsLoading(false);
+      setCurrentPoem('UNABLE TO LOAD POEM');
+      setCurrentTitle('ERROR');
     }
   };
 
@@ -66,12 +47,9 @@ const App = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-5xl font-bold mb-2" style={{fontFamily: 'Jersey 25 Charted, cursive', fontVariationSettings: '"opsz" 25'}}>
-            Daily Poetry Journal
+          <h1 className="text-2xl md:text-4xl mb-4" style={{fontFamily: 'Press Start 2P, monospace'}}>
+            DAILY POETRY
           </h1>
-          <div className="text-sm md:text-base text-gray-600" style={{fontFamily: 'Jersey 25 Charted, cursive'}}>
-            Entry #{poemCount} • {lastUpdate}
-          </div>
         </div>
 
         {/* Notebook Container */}
@@ -101,51 +79,34 @@ const App = () => {
 
             {/* Content Area */}
             <div className="h-full flex flex-col pt-8">
-              {/* Title Area */}
-              <div className="mb-4">
-                <h2 className="handwritten-title">
-                  Today's Poem
+              {/* Title and Date Area */}
+              <div className="mb-8">
+                <h2 className="handwritten-title mb-2">
+                  {currentTitle.toUpperCase() || 'LOADING...'}
                 </h2>
-                <div className="handwritten text-sm text-gray-500 mb-4">
+                <div className="handwritten text-xs text-gray-500 mb-6">
                   {new Date().toLocaleDateString('en-US', { 
                     weekday: 'long', 
                     year: 'numeric', 
                     month: 'long', 
                     day: 'numeric' 
-                  })}
+                  }).toUpperCase()}
                 </div>
               </div>
 
               {/* Poem Content */}
-              <div className="flex-1 flex items-start justify-start pt-8">
-                {isLoading ? (
-                  <div className="handwritten animate-pulse">
-                    Writing today's poem...
-                  </div>
-                ) : (
-                  <div className="handwritten">
-                    {formatPoem(currentPoem)}
-                  </div>
-                )}
-              </div>
-
-              {/* Footer */}
-              <div className="pb-8 text-center">
-                <button
-                  onClick={generateNewPoem}
-                  disabled={isLoading}
-                  className="notebook-button px-6 py-3 text-sm disabled:opacity-50"
-                >
-                  {isLoading ? 'Writing...' : 'New Poem'}
-                </button>
+              <div className="flex-1 flex items-start justify-start pt-4">
+                <div className="handwritten">
+                  {formatPoem(currentPoem.toUpperCase() || 'LOADING POEM...')}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Info */}
-        <div className="text-center mt-8 text-sm text-gray-500" style={{fontFamily: 'Jersey 25 Charted, cursive'}}>
-          Powered by Internet Computer AI
+        <div className="text-center mt-8 text-xs text-gray-500" style={{fontFamily: 'Press Start 2P, monospace'}}>
+          POWERED BY INTERNET COMPUTER AI
         </div>
       </div>
     </div>

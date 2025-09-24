@@ -1,9 +1,14 @@
-/* Jersey 25 Charted Font */
-@import url('https://fonts.googleapis.com/css2?family=Jersey+25+Charted:opsz@8..25&display=swap');
+/* Press Start 2P Pixel Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Apply Press Start 2P to all text by default */
+* {
+  font-family: 'Press Start 2P', monospace !important;
+}
 
 /* Custom pixel art styles */
 @layer base {
@@ -56,15 +61,15 @@
     blink 0.75s step-end infinite;
 }
 
-/* Notebook button styles */
+/* Pixel button styles */
 .notebook-button {
   background: #f8f9fa;
   border: 2px solid #2c3e50;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: all 0.2s ease;
-  font-family: 'Jersey 25 Charted', cursive;
-  font-variation-settings: "opsz" 20;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
 }
 
 .notebook-button:hover {
@@ -78,25 +83,22 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Handwritten text style */
+/* Pixel text style */
 .handwritten {
-  font-family: 'Jersey 25 Charted', cursive;
-  font-variation-settings: "opsz" 16;
+  font-family: 'Press Start 2P', monospace;
   line-height: 32px;
   margin-left: 80px; /* Start after red margin line */
   padding-right: 40px;
   text-align: left;
   color: #2c3e50;
-  font-size: 18px;
+  font-size: 12px;
 }
 
-/* Title handwritten style */
+/* Pixel title style */
 .handwritten-title {
-  font-family: 'Jersey 25 Charted', cursive;
-  font-variation-settings: "opsz" 20;
+  font-family: 'Press Start 2P', monospace;
   line-height: 32px;
   margin-left: 80px;
   color: #2c3e50;
-  font-size: 22px;
-  font-weight: 400;
+  font-size: 14px;
 }
