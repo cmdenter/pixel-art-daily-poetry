@@ -1,5 +1,5 @@
-/* Pixel Art Font */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* Jersey 25 Charted Font */
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25+Charted:opsz@8..25&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,12 +14,20 @@
   }
 }
 
-/* Pixel paper texture */
-.pixel-paper {
+/* Notebook paper with lines */
+.notebook-paper {
   background-image: 
-    linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px),
-    linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
+    /* Red margin line */
+    linear-gradient(to right, transparent 60px, #ff6b6b 60px, #ff6b6b 62px, transparent 62px),
+    /* Horizontal ruled lines */
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      #c3d4e8 31px,
+      #c3d4e8 32px
+    );
+  background-size: 100% 32px;
+  line-height: 32px;
 }
 
 /* Pixel border effect */
@@ -48,22 +56,47 @@
     blink 0.75s step-end infinite;
 }
 
-/* Pixel button styles */
-.pixel-button {
-  background: #f0f0f0;
-  border: 2px solid #000;
-  box-shadow: 
-    inset -2px -2px 0px 0px #a0a0a0,
-    inset 2px 2px 0px 0px #ffffff;
-  position: relative;
+/* Notebook button styles */
+.notebook-button {
+  background: #f8f9fa;
+  border: 2px solid #2c3e50;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  font-family: 'Jersey 25 Charted', cursive;
+  font-variation-settings: "opsz" 20;
 }
 
-.pixel-button:hover {
-  background: #e0e0e0;
+.notebook-button:hover {
+  background: #e9ecef;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
 }
 
-.pixel-button:active {
-  box-shadow: 
-    inset 2px 2px 0px 0px #a0a0a0,
-    inset -2px -2px 0px 0px #ffffff;
+.notebook-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Handwritten text style */
+.handwritten {
+  font-family: 'Jersey 25 Charted', cursive;
+  font-variation-settings: "opsz" 16;
+  line-height: 32px;
+  margin-left: 80px; /* Start after red margin line */
+  padding-right: 40px;
+  text-align: left;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+/* Title handwritten style */
+.handwritten-title {
+  font-family: 'Jersey 25 Charted', cursive;
+  font-variation-settings: "opsz" 20;
+  line-height: 32px;
+  margin-left: 80px;
+  color: #2c3e50;
+  font-size: 22px;
+  font-weight: 400;
 }
